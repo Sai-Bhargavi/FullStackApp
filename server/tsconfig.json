@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "target": "es2017",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ]
+  },
+  "include": [
+    "./src"
+  ]
+}
