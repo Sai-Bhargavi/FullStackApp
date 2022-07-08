@@ -11,9 +11,6 @@ function App() {
       .then((data) => setData(data.message));
   }, []);
 
-  React.useEffect(() => {
-    fetch
-  }, [])
   return (
     <div className="App">
       <header className="App-header">

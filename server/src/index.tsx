@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import express from "express";
-import { dbconn } from "./Connection.js";
+//import { dbconn } from "./Connection.js";
 import { PlantRepository } from './PlantRepository.js';
 import { PlantGarden, PlantStatus } from './Plants.js';
 
@@ -13,6 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
+let fruits = ["Mango", "Dragon", "Cherry", "Berry"];
 app.use(express.static(path.resolve(__dirname, '../../client/build')));
 
 app.get("/api", (req, res) => {
@@ -28,12 +29,26 @@ newPlant.name = "Cherry";
 newPlant.category = 2;
 newPlant.status = PlantStatus.Pending;
 app.get("/plant", async (req, res) => {
-    dbconn.then(conn => conn.getCustomRepository(PlantRepository))
-        .then(result => result.save(newPlant))
-        .then(() => res.sendStatus(200));
+    res.sendStatus(200)
+    // dbconn.then(conn => conn.getCustomRepository(PlantRepository))
+    //     .then(result => result.save(newPlant))
+    //     .then(() => res.sendStatus(200));
 });
 
+app.get("/plant/:name", async (req, res) => {
+    PlantRepository.findByName(req.params.name)
+        .then(respon => console.log(respon))
+        .then(() => res.sendStatus(200));
 
+    // app.get("/plant/:name", async (req, res) => {
+    //     PlantRepository.findBy({ name: req.params.name })
+    //         .then(respon => console.log(respon))
+    //         .then(() => res.sendStatus(200));
+    // dbconn.then(conn => conn.getCustomRepository(PlantRepository))
+    //     .then(result => result.findByName(req.params.name))
+    //     .then(respon => console.log(respon))
+    //     .then(() => res.sendStatus(200));
+});
 
 
 app.get('*', (req, res) => {

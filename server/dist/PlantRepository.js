@@ -1,20 +1,25 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 import "reflect-metadata";
-import { EntityRepository, Repository } from "typeorm";
 import { PlantGarden } from "./Plants.js";
-let PlantRepository = class PlantRepository extends Repository {
-    findByName(name) {
+import { dataSource } from "./Connection.js";
+export const PlantRepository = dataSource.getRepository(PlantGarden).extend({
+    async findByName(name) {
         return this.createQueryBuilder("Plant")
             .where("Plant.name = :name", { name })
             .getOne();
     }
-};
-PlantRepository = __decorate([
-    EntityRepository(PlantGarden)
-], PlantRepository);
-export { PlantRepository };
+});
+// @EntityRepository(PlantGarden)
+// export class PlantRepository extends Repository<PlantGarden> {
+//     findByName(name: string) {
+//         return this.createQueryBuilder("Plant")
+//             .where("Plant.name = :name", { name })
+//             .getOne();
+//     }
+//     // updateName(id: number, name: string) {
+//     //     return this.createQueryBuilder("Pet")
+//     //         .update()
+//     //         .set({ name: name })
+//     //         .where("Pet.id = :id", { id })
+//     //         .execute();
+//     // }
+// }
