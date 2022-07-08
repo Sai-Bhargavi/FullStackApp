@@ -19,7 +19,9 @@ newPlant.name = "Cherry";
 newPlant.category = 2;
 newPlant.status = PlantStatus.Pending;
 app.get("/plant", async (req, res) => {
-    res.sendStatus(200);
+    PlantRepository.find({
+        select: { name: true, },
+    }).then(respon => res.send(respon));
     // dbconn.then(conn => conn.getCustomRepository(PlantRepository))
     //     .then(result => result.save(newPlant))
     //     .then(() => res.sendStatus(200));
