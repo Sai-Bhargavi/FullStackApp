@@ -8,6 +8,13 @@ export const PlantRepository = dataSource.getRepository(PlantGarden).extend({
             .getOne();
     }
 });
+export const PlantRepositorySave = dataSource.getRepository(PlantGarden).extend({
+    async savetoDb(name, category, status) {
+        return this.createQueryBuilder("Plant")
+            .insert().into("Plant")
+            .values([{ name: name, category: category, status: status }]).execute();
+    }
+});
 // @EntityRepository(PlantGarden)
 // export class PlantRepository extends Repository<PlantGarden> {
 //     findByName(name: string) {

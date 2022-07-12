@@ -2,12 +2,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import express from "express";
 //import { dbconn } from "./Connection.js";
-import { PlantRepository } from './PlantRepository.js';
+import { PlantRepository, PlantRepositorySave } from './PlantRepository.js';
 import { PlantGarden, PlantStatus } from './Plants.js';
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -21,7 +22,11 @@ app.get("/api", (req, res) => {
 });
 
 
-
+app.post("/addFruit", (req, res) => {
+    PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status)
+        .then(respon => console.log(respon))
+        .then(() => res.sendStatus(200));
+});
 
 //////////////////
 const newPlant = new PlantGarden();
@@ -31,7 +36,7 @@ newPlant.status = PlantStatus.Pending;
 app.get("/plant", async (req, res) => {
     PlantRepository.find({
         select:
-            { name: true, },
+            { name: true, category: true, status: true },
     }).then(respon => res.send(respon));
 
     // dbconn.then(conn => conn.getCustomRepository(PlantRepository))
