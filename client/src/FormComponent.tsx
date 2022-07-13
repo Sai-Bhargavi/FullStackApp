@@ -4,6 +4,7 @@ import { PlantsListComponent } from "./PlantsListComponent";
 
 export function FormComponent() {
     const [signal, setSignal] = useState([]);
+
     const handleSub = useCallback((e: any) => {
         e.preventDefault();
         var body = {

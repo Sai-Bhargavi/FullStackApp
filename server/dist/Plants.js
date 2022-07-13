@@ -33,10 +33,17 @@ __decorate([
     Column({
         type: "enum",
         enum: PlantStatus,
-        default: PlantStatus.Available
+        default: PlantStatus.Available,
     }),
     __metadata("design:type", String)
 ], PlantGarden.prototype, "status", void 0);
+__decorate([
+    Column({
+        type: "text",
+        default: "/images/PlantImage.jpeg"
+    }),
+    __metadata("design:type", String)
+], PlantGarden.prototype, "image_url", void 0);
 PlantGarden = __decorate([
     Entity({ name: "Plant" })
 ], PlantGarden);

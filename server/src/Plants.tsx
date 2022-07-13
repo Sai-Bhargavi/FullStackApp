@@ -21,8 +21,14 @@ export class PlantGarden {
     @Column({
         type: "enum",
         enum: PlantStatus,
-        default: PlantStatus.Available
+        default: PlantStatus.Available,
     })
     status!: PlantStatus;
+
+    @Column({
+        type: "text",
+        default: "/images/PlantImage.jpeg"
+    })
+    image_url!: string;
 
 }
