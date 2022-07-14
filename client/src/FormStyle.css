@@ -1,11 +1,38 @@
 input[type=button],
 input[type=submit],
 input[type=reset] {
-    background-color: #04AA6D;
-    border: none;
+    background-color: #80ae9d;
     color: white;
     padding: 16px 32px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+    border: 2px solid red;
+    border-radius: 12px;
+
+}
+
+input[type=text],
+input[type=number] {
+    border: none;
+    border-bottom: 2px solid #0d0101;
+}
+
+.SelectOptionsStyle {
+    padding: 12px;
+    width: 100px;
+    height: 50px;
+    text-size-adjust: 180%;
+    border: none;
+}
+
+.OptionsStyle {
+    text-size-adjust: 100%;
+    font-family: Arial;
+    width: 100%;
+
+}
+
+.ComponentStyle {
+    background-color: #a9c6cb;
 }

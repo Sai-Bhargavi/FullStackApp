@@ -2,8 +2,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import express from "express";
 //import { dbconn } from "./Connection.js";
-import { PlantRepository, PlantRepositorySave } from './PlantRepository.js';
-import { PlantGarden, PlantStatus } from './Plants.js';
+import { PlantRepository, PlantrepositoryGetAll, PlantRepositorySave } from './PlantRepository.js';
+import { Plant, PlantStatus } from './Plant.js';
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
@@ -15,23 +15,49 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 app.post("/addFruit", (req, res) => {
-    PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status)
-        .then(respon => console.log(respon))
-        .then(() => res.sendStatus(200));
+    if (req.body.category == 1) {
+        PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status, "/images/TreesImage.jpeg")
+            .then(respon => console.log(respon))
+            .then(() => res.sendStatus(200));
+    }
+    else if (req.body.category == 2) {
+        PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status, "/images/HerbsImage.jpeg")
+            .then(respon => console.log(respon))
+            .then(() => res.sendStatus(200));
+    }
+    else if (req.body.category == 3) {
+        PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status, "/images/ShrubsImage.jpeg")
+            .then(respon => console.log(respon))
+            .then(() => res.sendStatus(200));
+    }
+    else if (req.body.category == 4) {
+        PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status, "/images/CreeperImage.jpeg")
+            .then(respon => console.log(respon))
+            .then(() => res.sendStatus(200));
+    }
+    else {
+        PlantRepositorySave.savetoDb(req.body.name, req.body.category, req.body.status, "/images/ClimberImage.jpeg")
+            .then(respon => console.log(respon))
+            .then(() => res.sendStatus(200));
+    }
 });
 //////////////////
-const newPlant = new PlantGarden();
+const newPlant = new Plant();
 newPlant.name = "Cherry";
-newPlant.category = 2;
+//newPlant.category = 2;
 newPlant.status = PlantStatus.Pending;
-app.get("/plant", async (req, res) => {
-    PlantRepository.find({
-        select: { name: true, category: true, status: true, image_url: true },
-    }).then(respon => res.send(respon));
-    // dbconn.then(conn => conn.getCustomRepository(PlantRepository))
-    //     .then(result => result.save(newPlant))
-    //     .then(() => res.sendStatus(200));
+// app.get("/plant", async (req, res) => {
+//     PlantRepository.find({
+//         select:
+//             { name: true, status: true, image_url: true },
+//     }).then(respon => res.send(respon));});
+app.get("/plant", (req, res) => {
+    PlantrepositoryGetAll.getFromDB(req.body.name, req.body.category, req.body.status)
+        .then(respon => res.send(respon));
 });
+// dbconn.then(conn => conn.getCustomRepository(PlantRepository))
+//     .then(result => result.save(newPlant))
+//     .then(() => res.sendStatus(200));
 app.get("/plant/:name", async (req, res) => {
     PlantRepository.findByName(req.params.name)
         .then(respon => console.log(respon))

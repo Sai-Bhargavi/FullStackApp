@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import "reflect-metadata";
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { CategoriesEntity } from "./Category.js";
+import { Category } from "./Category.js";
 export var PlantStatus;
 (function (PlantStatus) {
     PlantStatus["Available"] = "available";
     PlantStatus["Pending"] = "pending";
     PlantStatus["Sold"] = "sold";
 })(PlantStatus || (PlantStatus = {}));
-let PlantGarden = class PlantGarden {
+let Plant = class Plant {
 };
 __decorate([
     PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], PlantGarden.prototype, "id", void 0);
+], Plant.prototype, "id", void 0);
 __decorate([
     Column('text'),
     __metadata("design:type", String)
-], PlantGarden.prototype, "name", void 0);
+], Plant.prototype, "name", void 0);
 __decorate([
     Column('int2'),
-    ManyToOne(() => CategoriesEntity, (Category) => Category.types),
-    __metadata("design:type", CategoriesEntity)
-], PlantGarden.prototype, "category", void 0);
+    ManyToOne(() => Category, (category) => category.plant),
+    __metadata("design:type", Category)
+], Plant.prototype, "category", void 0);
 __decorate([
     Column({
         type: "enum",
@@ -38,15 +38,15 @@ __decorate([
         default: PlantStatus.Available,
     }),
     __metadata("design:type", String)
-], PlantGarden.prototype, "status", void 0);
+], Plant.prototype, "status", void 0);
 __decorate([
     Column({
         type: "text",
         default: "/images/PlantImage.jpeg"
     }),
     __metadata("design:type", String)
-], PlantGarden.prototype, "image_url", void 0);
-PlantGarden = __decorate([
-    Entity({ name: "Plant" })
-], PlantGarden);
-export { PlantGarden };
+], Plant.prototype, "image_url", void 0);
+Plant = __decorate([
+    Entity()
+], Plant);
+export { Plant };

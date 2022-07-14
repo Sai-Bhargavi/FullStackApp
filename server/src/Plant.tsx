@@ -1,5 +1,6 @@
 import "reflect-metadata";
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Category } from "./Category.js";
 
 export enum PlantStatus {
     Available = "available",
@@ -7,8 +8,8 @@ export enum PlantStatus {
     Sold = "sold"
 }
 
-@Entity({ name: "Plant" })
-export class PlantGarden {
+@Entity()
+export class Plant {
     @PrimaryGeneratedColumn()
     id!: number;
 
@@ -16,7 +17,8 @@ export class PlantGarden {
     name!: string;
 
     @Column('int2')
-    category!: number;
+    @ManyToOne(() => Category, (category) => category.plant)
+    category!: Category;
 
     @Column({
         type: "enum",

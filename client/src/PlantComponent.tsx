@@ -4,7 +4,7 @@ export function PlantComponent(props) {
         <div className="polaroid">
             <img src={props.plant.image_url} alt="5 Terre" />
             <div className="container">
-                <p>{props.plant.name} -  {props.plant.status}</p>
+                <p>{props.plant.category.plant}:{props.plant.name} -  {props.plant.status}</p>
             </div>
         </div>
     );

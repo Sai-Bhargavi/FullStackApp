@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { PlantsListComponent } from "./PlantsListComponent";
+import './FormStyle.css';
 
 export function FormComponent() {
     const [signal, setSignal] = useState([]);
@@ -18,8 +19,8 @@ export function FormComponent() {
             .catch(err => console.log(err));
 
     }, []);
-    return (
-        <div>
+    return (<div>
+        <div className="ComponentStyle">
             <form onSubmit={handleSub}>
                 <label>Name</label>
                 <input type="text" name="name" />
@@ -27,16 +28,20 @@ export function FormComponent() {
                 <input type="number" name="category" />
                 <label>
                     Pick your Status:
-                    <select >
-                        <option value="available">Available</option>
-                        <option value="pending">Pending</option>
-                        <option value="sold">Sold</option>
+                    <select className="SelectOptionsStyle">
+                        <option className="OptionsStyle" value="available">Available</option>
+                        <option className="OptionsStyle" value="pending">Pending</option>
+                        <option className="OptionsStyle" value="sold">Sold</option>
                     </select>
                 </label>
-                <input type="submit" />
+                <div>
+                    <input type="submit" />
+                </div>
             </form>
-            <PlantsListComponent name={signal} />
         </div>
+        <PlantsListComponent name={signal} />
+
+    </div>
     );
 }
 
