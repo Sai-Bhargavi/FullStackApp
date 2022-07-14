@@ -1,9 +1,10 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import express from "express";
+import express, { application } from "express";
 //import { dbconn } from "./Connection.js";
 import { PlantRepository, PlantrepositoryGetAll, PlantRepositorySave } from './PlantRepository.js';
 import { Plant, PlantStatus } from './Plant.js';
+import { UsersRepository } from './UsersRepository.js';
 
 const PORT = process.env.PORT || 3001;
 
@@ -20,6 +21,19 @@ app.use(express.static(path.resolve(__dirname, '../../client/build')));
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
 });
+
+
+app.post("/login", async (req, res) => {
+    UsersRepository.findByName(req.body.uname, req.body.pass)
+        .then(response => {
+            if (response != null)
+                res.sendStatus(200);
+            else
+                res.sendStatus(400);
+        })
+        .catch(err => console.log(err));
+});
+
 
 
 app.post("/addFruit", (req, res) => {
@@ -76,6 +90,8 @@ app.get("/plant/:name", async (req, res) => {
     PlantRepository.findByName(req.params.name)
         .then(respon => console.log(respon))
         .then(() => res.sendStatus(200));
+
+
 
     // app.get("/plant/:name", async (req, res) => {
     //     PlantRepository.findBy({ name: req.params.name })

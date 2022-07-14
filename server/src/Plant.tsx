@@ -23,7 +23,7 @@ export class Plant {
     @Column({
         type: "enum",
         enum: PlantStatus,
-        default: PlantStatus.Available,
+        default: PlantStatus.Available
     })
     status!: PlantStatus;
 

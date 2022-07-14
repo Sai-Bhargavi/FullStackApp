@@ -4,6 +4,7 @@ import express from "express";
 //import { dbconn } from "./Connection.js";
 import { PlantRepository, PlantrepositoryGetAll, PlantRepositorySave } from './PlantRepository.js';
 import { Plant, PlantStatus } from './Plant.js';
+import { UsersRepository } from './UsersRepository.js';
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
@@ -13,6 +14,17 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.resolve(__dirname, '../../client/build')));
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
+});
+app.post("/login", async (req, res) => {
+    UsersRepository.findByName(req.body.uname, req.body.pass)
+        .then(response => {
+        console.log("response is " + response);
+        if (response != null)
+            res.sendStatus(200);
+        else
+            res.sendStatus(400);
+    })
+        .catch(err => { console.log(err); });
 });
 app.post("/addFruit", (req, res) => {
     if (req.body.category == 1) {
