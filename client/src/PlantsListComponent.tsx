@@ -14,6 +14,6 @@ export function PlantsListComponent(props) {
         }, [props.name]);
 
     return (
-        <ul>{plants.map(plant => <li> <PlantComponent plant={plant} /> </li>)}</ul>
+        plants.map(plant => <PlantComponent plant={plant} />)
     );
 }
