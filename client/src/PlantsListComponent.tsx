@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { PlantComponent } from "./PlantComponent";
+import { CategoryFilter } from "./CategoryFilter";
 
 export function PlantsListComponent(props) {
     const [plants, setPlants] = useState(props.name);
@@ -14,6 +15,9 @@ export function PlantsListComponent(props) {
         }, [props.name]);
 
     return (
-        plants.map(plant => <PlantComponent plant={plant} />)
+        <div>
+            < CategoryFilter plantlist={plants} />;
+            {plants.map(plant => <PlantComponent plant={plant} />)}
+        </div>
     );
 }
