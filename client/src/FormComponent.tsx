@@ -22,6 +22,7 @@ export function FormComponent() {
     return (<div>
         <div className="ComponentStyle">
             <form onSubmit={handleSub}>
+                <h2 style={{ backgroundColor: "lightcoral" }}>Add Plant</h2>
                 <label>Name</label>
                 <input type="text" name="name" />
                 <label>Category</label>
@@ -40,8 +41,7 @@ export function FormComponent() {
             </form>
         </div>
         <PlantsListComponent name={signal} />
-
-    </div>
+    </div >
     );
 }
 

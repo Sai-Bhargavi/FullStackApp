@@ -56,3 +56,20 @@
     justify-content: center;
     transition: all 0.1s;
 }
+
+.modal-decor {
+    background-color: #a5c4dd;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    /* Location of the box */
+    left: 38%;
+    top: 30%;
+    width: 30%;
+    /* Full width */
+    height: 40%;
+    /* Full height */
+    overflow: auto;
+}

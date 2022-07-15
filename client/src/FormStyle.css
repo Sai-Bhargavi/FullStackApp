@@ -1,4 +1,4 @@
-input[type=button],
+/* input[type=button],
 input[type=submit],
 input[type=reset] {
     background-color: #80ae9d;
@@ -10,13 +10,13 @@ input[type=reset] {
     border: 2px solid red;
     border-radius: 12px;
 
-}
-
+} */
+/* 
 input[type=text],
 input[type=number] {
-    border: none;
+    border: 2px solid;
     border-bottom: 2px solid #0d0101;
-}
+} */
 
 .SelectOptionsStyle {
     padding: 12px;

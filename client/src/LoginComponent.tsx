@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
+import Background from "./bgimage.jpeg";
 
 export function LoginComponenet() {
     const [errormessage, seterrormessage] = useState(" ");
@@ -19,21 +21,21 @@ export function LoginComponenet() {
     };
 
     return (
-        <div className="form">
+        <div style={{ backgroundImage: `url(${Background})`, height: '100vh', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+            <form onSubmit={handleSubmit} className="formdecor">
+                <div className="input-container">
+                    <label style={{ fontSize: '20px' }}>Username : </label>
+                    <input className="inputdecor" type="text" name="uname" required />
+                </div>
+                <div className="input-container">
+                    <label style={{ fontSize: '20px' }}>Password : </label>
+                    <input className="inputdecor" type="password" name="pass" required />
+                </div>
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
             <>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-container">
-                        <label>Username </label>
-                        <input type="text" name="uname" required />
-                    </div>
-                    <div className="input-container">
-                        <label>Password </label>
-                        <input type="password" name="pass" required />
-                    </div>
-                    <div className="button-container">
-                        <input type="submit" />
-                    </div>
-                </form>
                 {isSubmitted ? navigate("/home") : errormessage}
             </>
         </div>

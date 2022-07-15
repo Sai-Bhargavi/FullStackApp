@@ -16,8 +16,8 @@ export function PlantsListComponent(props) {
 
     return (
         <div>
-            < CategoryFilter plantlist={plants} />;
-            {plants.map(plant => <PlantComponent plant={plant} />)}
+            {plants.map(plant => <PlantComponent plant={plant} />)}< CategoryFilter plantlist={plants} />;
+
         </div>
     );
 }
