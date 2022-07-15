@@ -18,13 +18,12 @@ app.get("/api", (req, res) => {
 app.post("/login", async (req, res) => {
     UsersRepository.findByName(req.body.uname, req.body.pass)
         .then(response => {
-        console.log("response is " + response);
         if (response != null)
             res.sendStatus(200);
         else
             res.sendStatus(400);
     })
-        .catch(err => { console.log(err); });
+        .catch(err => console.log(err));
 });
 app.post("/addFruit", (req, res) => {
     if (req.body.category == 1) {
