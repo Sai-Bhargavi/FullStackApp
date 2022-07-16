@@ -19,11 +19,10 @@ input[type=number] {
 } */
 
 .SelectOptionsStyle {
-    padding: 12px;
-    width: 100px;
-    height: 50px;
-    text-size-adjust: 180%;
-    border: none;
+    margin: 6px 0;
+    padding: 14px;
+    width: 100%;
+    font-size: large;
 }
 
 .OptionsStyle {
@@ -33,6 +32,11 @@ input[type=number] {
 
 }
 
+
 .ComponentStyle {
     background-color: #a9c6cb;
+    border-radius: 4px;
+    height: 100vh;
+    max-width: 100%;
+    padding: 48px;
 }
