@@ -7,13 +7,7 @@ import "./FormStyle.css";
 export function PlantsListComponent(props) {
     const [plants, setPlants] = useState(props.name);
     const [showAllPlants, setShowAllPlants] = useState(true);
-    var show;
-    if (showAllPlants) {
-        show = plants.map(plant => <PlantComponent plant={plant} />);
-    }
-    else {
-        show = "";
-    }
+
     useEffect(
         () => {
             axios.get('/plant')
@@ -26,7 +20,7 @@ export function PlantsListComponent(props) {
     return (
         <div className="plantslist">
             < CategoryFilter plantlist={[plants, showAllPlants, setShowAllPlants]} />
-            {show}
+            {showAllPlants && plants.map(plant => <PlantComponent plant={plant} />)}
         </div>
     );
 }
