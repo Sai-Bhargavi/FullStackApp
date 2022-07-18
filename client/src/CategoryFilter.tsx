@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 
 export function CategoryFilter(props) {
     // List of all cars satisfing all the filters
-    const [filteredList, setFilteredList] = useState(props.plantlist);
+    const [filteredList, setFilteredList] = useState(props.plantlist[0]);
     // Selected Brand name filter
     const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -28,20 +28,21 @@ export function CategoryFilter(props) {
     // Update seletedBrand state
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
+        props.plantlist[2](false);
     };
 
     useEffect(() => {
-        var filteredData = filterByCategory(props.plantlist);
+        var filteredData = filterByCategory(props.plantlist[0]);
 
         setFilteredList(filteredData);
     }, [selectedCategory]);
 
     return (
-        <div className="CategoryFilter">
+        <div>
             <div className="category-filter">
-                <div>Filter by Category :</div>
+                <div>Filter by Category </div>
                 <select
-                    id="category-input"
+                    // id="category-input"
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                 >
@@ -54,7 +55,7 @@ export function CategoryFilter(props) {
                 </select>
             </div>
 
-            <div id="plant-list">
+            <div className="CategoryFilter">
                 {filteredList.map((item, index) => (
                     <div className="plant-item" key={index}>
                         <div className="plant-name">{`Name: ${item.name}`}</div>

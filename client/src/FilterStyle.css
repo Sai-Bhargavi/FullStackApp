@@ -1,9 +1,11 @@
 .CategoryFilter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    ;
     font-size: 20px;
 }
 
@@ -39,6 +41,7 @@
 .category-filter {
     display: flex;
     margin: 15px;
+    justify-content: flex-end;
 }
 
 #category-input {
@@ -58,18 +61,15 @@
 }
 
 .modal-decor {
-    background-color: #a5c4dd;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    /* Location of the box */
+    background-color: #ddbaa5f2;
+    /* height: 40%; */
     left: 38%;
+    overflow: auto;
+    position: fixed;
     top: 30%;
     width: 30%;
-    /* Full width */
-    height: 40%;
-    /* Full height */
-    overflow: auto;
+    z-index: 1;
+    padding: 16px;
+    text-align: center;
+    border-style: solid;
 }

@@ -6,6 +6,8 @@ import './LoginForm.css';
 
 export function FormComponent() {
     const [signal, setSignal] = useState([]);
+    const [disableSubmitButton, setdisableSubmitButton] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSub = useCallback((e: any) => {
         e.preventDefault();
@@ -20,6 +22,18 @@ export function FormComponent() {
             .catch(err => console.log(err));
 
     }, []);
+
+    const handleCategoryInput = (e: any) => {
+        if (e.target.value > 5 || e.target.value < 1) {
+            setdisableSubmitButton(true);
+            setErrorMessage('*Invalid input. Please select a category between 1 and 5.');
+        }
+        else {
+            setdisableSubmitButton(false);
+            setErrorMessage('');
+        }
+    };
+
     return (<div>
         <div className="ComponentStyle">
             <form onSubmit={handleSub}>
@@ -27,7 +41,8 @@ export function FormComponent() {
                 <label style={{ fontSize: '20px' }}>Name</label>
                 <input className="inputdecor" type="text" name="name" />
                 <label style={{ fontSize: '20px' }}>Category</label>
-                <input className="inputdecor" type="number" name="category" />
+                <input className="inputdecor" type="number" name="category" onChange={handleCategoryInput} />
+                {errorMessage && (<p style={{ color: 'red' }}> {errorMessage} </p>)}
                 <label style={{ fontSize: '20px' }}>
                     Pick your Status:
                     <select className="SelectOptionsStyle">
@@ -37,11 +52,11 @@ export function FormComponent() {
                     </select>
                 </label>
                 <div>
-                    <input type="submit" />
+                    <input type="submit" disabled={disableSubmitButton} />
                 </div>
             </form>
         </div>
-        {/* <PlantsListComponent name={signal} /> */}
+        <PlantsListComponent name={signal} />
     </div >
     );
 }

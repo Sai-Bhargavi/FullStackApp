@@ -36,7 +36,10 @@ input[type=number] {
 .ComponentStyle {
     background-color: #a9c6cb;
     border-radius: 4px;
-    height: 100vh;
     max-width: 100%;
     padding: 48px;
+}
+
+.plantslist {
+    display: flexbox;
 }
